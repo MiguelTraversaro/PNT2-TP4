@@ -1,0 +1,30 @@
+<section class="src-componentes-objetos">
+  <div class="jumbotron">
+    <h2>Objetos</h2>
+    <hr><hr><br>
+    <button class="btn btn-info my-3 mr-3" @click="getPostCb()">Pedir XHR (cb)</button>
+    <button class="btn btn-danger my-3 mr-3" @click="getPostPromise()">Pedir XHR (Promise)</button>
+    <button class="btn btn-warning my-3 mr-3" @click="getPostFetch()">Pedir fetch</button>
+    <button class="btn btn-primary my-3 mr-3" @click="getPostAxios()">Pedir Axios</button>
+
+    <div v-if="objetos.length" class="table-responsive">
+      <table class="table table-dark">
+        <tr>
+          <th>id</th>
+          <th>nombre</th>
+          <th>email</th>
+          <th>telefono</th>
+        </tr>
+        <tr v-for="(objeto, index) in objetos" :key="index">
+          <td>{{objeto.id}}</td>
+          <td>{{objeto.nombre}}</td>
+          <td>{{objeto.email}}</td>
+          <td>{{objeto.telefono}}</td>
+        </tr>
+      </table>
+      <h4 class="alert alert-primary">Se encontraron {{objetos.length}} registros</h4>
+    </div>
+    <h4 v-else-if="peticion" class="alert alert-danger">Cargando datos...</h4>
+  </div>
+</section>
+
