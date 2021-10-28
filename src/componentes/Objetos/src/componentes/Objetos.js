@@ -21,23 +21,18 @@ export default {
         this.objetos = []
         this.peticion = true
         let xhr = new XMLHttpRequest()
-        /* Configura la instancia */
         xhr.open('get',this.url)
-        /* Registramos el evento de fin de la comunicación */
         xhr.addEventListener('load', () => {
-          /* Comunicación exitosa */
           if(xhr.status == 200) {
             let respuesta = JSON.parse(xhr.response)
             console.log('XHR Cb', respuesta)
             this.objetos = respuesta
             this.peticion = false
           }
-          /* Comunicación error */
           else {
             console.error(`ERROR XHR Cb (status): ${xhr.status}`)
           }
         })
-        /* Registramos el evento de error de comunicación */
         xhr.addEventListener('error', e => {
             console.error('ERROR XHR Cb (event):', e)
         })
@@ -46,18 +41,13 @@ export default {
 
       postPromise() {
         return new Promise((resolve,reject) => {
-          /* Creo una instancia de comunicación asincrónica */
           let xhr = new XMLHttpRequest()
-          /* Configura la instancia */
           xhr.open('get',this.url)
-          /* Registramos el evento de fin de la comunicación */
           xhr.addEventListener('load', () => {
-            /* Comunicación exitosa */
             if(xhr.status == 200) {
               let respuesta = JSON.parse(xhr.response)
               resolve(respuesta)
             }
-            /* Comunicación error */
             else {
               let error = {
                 title: 'Error de status',
@@ -66,7 +56,6 @@ export default {
               reject(error)              
             }
           })
-          /* Registramos el evento de error de comunicación */
           xhr.addEventListener('error', e => {
               let error = {
                 title: 'Error event XHR',
@@ -92,7 +81,6 @@ export default {
         }
       },
 
-      /* ---------- AJAX: fetch ----------- */
       async getPostFetch() {
         this.objetos = []
         this.peticion = true

@@ -40,7 +40,7 @@ export default {
         let datosRecibidos = respuesta.data
         console.log('datosRecibidos POST', datosRecibidos)
 
-        //this.pedirDatosAlServidor()
+        this.pedirDatosAlServidor()
         this.datos.push(datosRecibidos)
       }
       catch(error) {
@@ -62,15 +62,12 @@ export default {
     },
 
     enviar() {
-      //console.log('enviar')
-      
-      //SPREAD OPERATOR ... -> clonar un objeto
       let usuarios = {...this.formData}
       console.log(usuarios)
       this.enviarDatosAlServidor(usuarios)
 
-      this.formData = this.getInicialData() //reset de los valores
-      this.formState._reset() //reset de los estados
+      this.formData = this.getInicialData()
+      this.formState._reset()
     }
     
   }
