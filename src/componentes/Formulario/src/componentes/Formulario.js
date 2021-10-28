@@ -36,12 +36,10 @@ export default {
     async enviarDatosAlServidor(usuarios) {
       try {
         let respuesta = await this.axios.post(this.url, usuarios, {'content-type':'application/json'})
-        
         let datosRecibidos = respuesta.data
         console.log('datosRecibidos POST', datosRecibidos)
-
         this.pedirDatosAlServidor()
-        this.datos.push(datosRecibidos)
+        this.usuarios.push(datosRecibidos)
       }
       catch(error) {
         console.error('Error en envío de datos del formulario', error)
@@ -51,7 +49,6 @@ export default {
     async pedirDatosAlServidor() {
       try {
         let respuesta = await this.axios(this.url)
-        
         let usuarios = respuesta.data
         console.log('datos GET', usuarios)
         this.usuarios = usuarios
@@ -65,8 +62,7 @@ export default {
       let usuarios = {...this.formData}
       console.log(usuarios)
       this.enviarDatosAlServidor(usuarios)
-
-      this.formData = this.getInicialData()
+      this.formData = this.getInitialData()
       this.formState._reset()
     }
     
